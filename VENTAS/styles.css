@@ -1,0 +1,421 @@
+/* -------------------------------------- */
+/* ---- 1. VARIABLES Y ESTILOS BASE ---- */
+/* -------------------------------------- */
+:root {
+    --color-primario: #0D47A1; /* Azul corporativo */
+    --color-acento: #FFD600;    /* Amarillo vibrante */
+    --color-blanco: #FFFFFF;
+    --color-texto: #333333;
+    --color-gris-claro: #f4f4f4;
+    --color-whatsapp: #25D366; /* Verde oficial de WhatsApp */
+    --fuente-titulos: 'Montserrat', sans-serif;
+    --fuente-cuerpo: 'Roboto', sans-serif;
+}
+
+/* Reseteo y estilos generales */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--fuente-cuerpo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    width: 100%;
+    overflow-x: hidden; /* Evita el scroll horizontal en mobile */
+}
+
+h1, h2, h3, h4 {
+    font-family: var(--fuente-titulos);
+    color: var(--color-primario);
+}
+
+h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+}
+
+.content-section {
+    padding: 80px 5%; 
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.gray-bg {
+    background-color: var(--color-gris-claro);
+}
+
+
+/* -------------------------------------- */
+/* ---- 2. HEADER Y NAVEGACIÓN (NAVBAR) ---- */
+/* -------------------------------------- */
+.main-header {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    padding: 15px 5%;
+    position: fixed;
+    top: 0;
+    width: 90%; 
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    transition: padding 0.3s ease, height 0.3s ease, box-shadow 0.3s ease;
+}
+
+.logo a img {
+    height: 50px; 
+    width: auto;
+    vertical-align: middle;
+}
+
+/* Estilos de contracción del header (para scroll) */
+.header-shrink { padding-top: 8px; padding-bottom: 8px; box-shadow: 0 1px 5px rgba(0,0,0,0.3); }
+.header-shrink .logo a img { height: 50px; }
+
+.main-nav {
+    flex: 1; 
+    display: flex;
+    justify-content: center; /* CLAVE: Centra los enlaces */
+    align-items: center;
+    gap: 25px; 
+    margin-left: 20px;
+}
+
+/* Enlaces y CTA */
+.main-nav a:not(.cta-button) {
+    color: var(--color-blanco);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+.main-nav a:hover { color: var(--color-acento); }
+
+.cta-button {
+    background-color: var(--color-acento); 
+    color: #000; 
+    padding: 10px 20px; 
+    border-radius: 5px; 
+    font-weight: bold; 
+    text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.cta-button:hover { 
+    color: #000; 
+    transform: scale(1.05); 
+}
+
+/* Íconos de Redes Sociales en Navbar */
+.nav-social-icons {
+    display: flex;
+    gap: 10px; 
+    align-items: center;
+}
+.nav-social-icons img {
+    width: 30px; 
+    height: 30px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.nav-social-icons a:hover img {
+    transform: scale(1.1);
+}
+
+
+/* -------------------------------------- */
+/* ---- 3. SECCIONES PRINCIPALES ---- */
+/* -------------------------------------- */
+
+/* ESTILOS PARALLAX */
+.parallax { 
+    background-attachment: fixed; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    position: relative; 
+}
+
+/* Sección INICIO / HERO (Fondo corregido) */
+.hero { 
+    min-height: 100vh; 
+    background-image: url('/IMG/fondo.jpeg'); 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+}
+.hero::after { 
+    content: ''; 
+    position: absolute; 
+    top: 0; left: 0; 
+    width: 100%; height: 100%; 
+    background-color: rgba(13, 71, 161, 0.7); 
+}
+.hero-content { 
+    position: relative; z-index: 10; 
+    color: var(--color-blanco); 
+    padding: 20px; 
+}
+.hero-content h1 { font-size: 4rem; color: var(--color-blanco); margin-bottom: 20px; }
+.hero-content p { font-size: 1.5rem; margin-bottom: 30px; }
+
+/* Botón principal (Hero y CTA final) */
+.hero-button { 
+    background-color: var(--color-acento); 
+    color: #000; 
+    padding: 15px 30px; 
+    border-radius: 5px; 
+    text-decoration: none; 
+    font-weight: bold; 
+    font-size: 1.2rem; 
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+.hero-button:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+}
+
+/* Sección de SERVICIOS (Corrección de imágenes: object-fit: cover) */
+.service-item { 
+    display: flex; 
+    align-items: center; 
+    gap: 50px; 
+    margin-bottom: 60px; 
+}
+.service-item.reverse { 
+    flex-direction: row-reverse; 
+}
+.service-image { 
+    flex: 1; 
+    height: 350px; 
+    overflow: hidden; 
+    border-radius: 10px; 
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1); 
+}
+.service-image img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; /* CLAVE: Mantiene la proporción */
+}
+.service-text { 
+    flex: 1; 
+}
+
+/* Galería (Swiper) */
+.galeria-swiper { width: 100%; height: auto; padding-bottom: 70px; position: relative; max-width: 1200px; margin: 0 auto; }
+.galeria-item img { width: 100%; height: 400px; object-fit: cover; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.swiper-button-next, .swiper-button-prev { color: var(--color-primario) !important; background-color: transparent; width: 50px; height: 50px; transition: color 0.3s; }
+.swiper-button-next::after, .swiper-button-prev::after { font-size: 30px !important; text-shadow: 0 0 5px rgba(255, 255, 255, 0.8); }
+.swiper-button-next:hover, .swiper-button-prev:hover { color: var(--color-acento) !important; }
+.swiper-pagination-bullet { background: var(--color-primario) !important; opacity: 0.7; width: 10px; height: 10px; }
+.swiper-pagination-bullet-active { opacity: 1; background: var(--color-acento) !important; }
+
+
+/* Sección de EQUIPOS (Fondo corregido) */
+.equipos-section { 
+    padding: 80px 0; 
+    background-image: url('/IMG/fondo.jpeg'); 
+}
+.equipos-content { max-width: 1200px; margin: 0 auto; padding: 40px; background-color: rgba(255, 255, 255, 0.95); border-radius: 10px; text-align: center; }
+
+.equipos-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; margin-top: 20px; }
+.equipo-card { background-color: var(--color-blanco); border-radius: 10px; overflow: hidden; box-shadow: 0 5px 15px rgba(0,0,0,0.08); transition: transform 0.3s ease; }
+.equipo-card:hover { transform: translateY(-10px); }
+.equipo-card img { width: 100%; height: 150px; object-fit: cover; }
+.equipo-card h4 { margin: 15px 0; font-size: 1.2rem; }
+
+.consideraciones-container { margin-top: 60px; text-align: left; border-top: 2px solid var(--color-primario); padding-top: 30px; }
+.charger-warning { background-color: var(--color-acento); color: #000; padding: 20px; border-radius: 5px; text-align: center; margin-bottom: 30px; }
+.consideraciones-lista { list-style: none; padding: 0; }
+.consideraciones-lista li { padding-left: 30px; position: relative; margin-bottom: 15px; }
+.consideraciones-lista li::before { content: '✔'; position: absolute; left: 0; color: var(--color-primario); font-weight: bold; }
+
+/* Sección HORARIOS */
+.horarios-container { 
+    display: flex; 
+    justify-content: space-around; 
+    text-align: center; 
+    gap: 20px; 
+}
+.horarios-item { 
+    background-color: var(--color-gris-claro); 
+    padding: 30px; 
+    border-radius: 10px; 
+    flex: 1; 
+    
+    /* Box Shadow inicial (sutil) */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05); 
+    
+    /* Transición para un efecto suave al pasar el mouse */
+    transition: all 0.3s ease-in-out; 
+    
+    /* Agregamos un borde transparente que tomará el color de sombra en hover */
+    border: 1px solid transparent;
+}
+
+/* MODIFICACIÓN SOLICITADA: EFECTO BRILANTE AL PASAR EL MOUSE (Hover) */
+.horarios-item:hover {
+    /* Sombra más marcada y brillante (azul y amarillo) */
+    box-shadow: 0 0 15px rgba(13, 71, 161, 0.8), 
+                0 0 30px var(--color-acento);
+    /* Ligeramente se levanta */
+    transform: translateY(-5px); 
+    /* Borde sutil para definir el contorno */
+    border-color: var(--color-primario);
+    background-color: var(--color-blanco); /* Fondo más claro al interactuar */
+}
+
+
+/* -------------------------------------- */
+/* ---- 4. CTA FINAL Y FOOTER ---- */
+/* -------------------------------------- */
+.final-cta { background-color: var(--color-primario); color: var(--color-blanco); text-align: center; padding: 80px 20px; }
+.final-cta h2 { color: var(--color-blanco); font-size: 2.8rem; }
+.main-footer { background-color: var(--color-primario); color: var(--color-blanco); padding: 20px; }
+.footer-content { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
+
+/* Íconos de Redes Sociales en Footer */
+.social-icons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+.social-icons a {
+    text-decoration: none;
+    transition: transform 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.social-icons img {
+    width: 40px; 
+    height: 40px;
+    object-fit: contain;
+    transition: transform 0.3s ease;
+}
+.social-icons a:hover img {
+    transform: translateY(-5px);
+}
+
+/* Botón flotante WhatsApp */
+.whatsapp-flotante { 
+    position: fixed; bottom: 20px; right: 20px; 
+    background-color: var(--color-whatsapp); 
+    width: 60px; height: 60px; border-radius: 50%; 
+    display: flex; align-items: center; justify-content: center; 
+    color: white; font-size: 35px; box-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    transition: all 0.3s ease; z-index: 1000; 
+}
+.whatsapp-flotante:hover { 
+    transform: scale(1.1); 
+    background-color: #20ba5a; 
+}
+.whatsapp-flotante .whatsapp-icon { 
+    color: white; 
+}
+
+
+/* -------------------------------------- */
+/* ---- 5. ESTILOS DEL PRELOADER (LOADER) ---- */
+/* -------------------------------------- */
+
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--color-blanco); /* Cambiado a fondo blanco */
+    z-index: 99999; /* Asegura que esté encima de todo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Transición suave para que desaparezca */
+    opacity: 1; 
+    visibility: visible;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.loader-content {
+    width: 150px; /* Contenedor fijo */
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.loader-content img {
+    width: 100%; /* La imagen se adaptará al contenedor */
+    height: 100%;
+    object-fit: contain; /* Mantiene la proporción */
+    animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Animación: El logo "late" o "pulsa" */
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 0.8; }
+    50% { transform: scale(1); opacity: 1; }
+    100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+
+/* -------------------------------------- */
+/* ---- 6. RESPONSIVE DESIGN (MÓVIL) ---- */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+    
+    /* Navbar en móvil (se apila) */
+    .main-header { 
+        flex-direction: column;
+        padding: 10px 5%;
+        position: static; 
+    }
+    
+    .logo { margin-bottom: 10px; }
+    
+    .main-nav { 
+        margin-top: 10px;
+        flex-wrap: wrap; 
+        justify-content: center; 
+        gap: 15px;
+        width: 100%;
+        flex-grow: initial;
+    }
+    
+    .main-nav a:not(.cta-button) { font-size: 0.9rem; }
+    .cta-button { padding: 8px 15px; }
+    
+    /* Íconos sociales del Navbar en móvil */
+    .nav-social-icons {
+        margin-top: 10px; 
+        width: 100%;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    /* Corrección Responsiva de la Sección Servicios */
+    .service-item, .service-item.reverse { 
+        flex-direction: column; 
+    }
+    .service-image { 
+        order: -1; 
+        margin-bottom: 20px;
+        height: 250px; 
+    } 
+    
+    /* Ajustes generales de sección */
+    .hero-content h1 { font-size: 2.5rem; }
+    .hero-content p { font-size: 1.2rem; }
+    .content-section { padding: 40px 5%; }
+    
+    /* Secciones de rejilla */
+    .equipos-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } 
+    .horarios-container { flex-direction: column; }
+    .footer-content { flex-direction: column; gap: 15px; }
+    
+    .whatsapp-flotante { width: 50px; height: 50px; font-size: 30px; }
+}
